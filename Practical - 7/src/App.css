@@ -1,0 +1,36 @@
+/* Reset & base styles */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f7fa;
+  color: #333;
+}
+
+/* Container for main content beside sidebar */
+.main-content {
+  padding: 20px;
+}
+
+/* Headings & text */
+h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Links hover effect */
+a:hover {
+  text-decoration: underline;
+  color: #ffc107;
+}
+
+/* Responsive tweaks (optional) */
+@media screen and (max-width: 768px) {
+  .main-content {
+    margin-left: 70px; /* Adjusted for collapsed sidebar */
+  }
+}

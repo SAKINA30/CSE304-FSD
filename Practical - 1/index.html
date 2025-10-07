@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practical-1</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- main container -->
+    <div class="container">
+
+        <h2>Vote For Your Favorite Language</h2>
+
+        <div class="buttons">
+            <button id= "jsBtn" onclick="vote('javaScript')">JavaScript</button>
+            <button id = "pyBtn" onclick="vote('python')">Python</button>
+            <button id = "javaBtn" onclick="vote('java')">Java</button>
+        </div>
+
+        <div class="results">
+            <p>JavaScript: <span id="jsCount">0</span></p>
+            <p>Python: <span id="pyCount">0</span></p>
+            <p>Java: <span id="javaCount">0</span></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

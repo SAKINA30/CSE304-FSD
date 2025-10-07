@@ -1,0 +1,29 @@
+{
+	"name": "tax-form-total-income",
+	"version": "1.0.0",
+	"description": "Express app to calculate total income from two sources with EJS and validation",
+	"main": "app.js",
+	"scripts": {
+		"start": "node app.js",
+		"start:3000": "cross-env PORT=3000 node app.js",
+		"start:3001": "cross-env PORT=3001 node app.js",
+		"start:3002": "cross-env PORT=3002 node app.js",
+		"dev": "nodemon app.js",
+		"dev:3000": "cross-env PORT=3000 nodemon app.js",
+		"dev:3001": "cross-env PORT=3001 nodemon app.js",
+		"dev:3002": "cross-env PORT=3002 nodemon app.js"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"body-parser": "^2.2.0",
+		"cross-env": "^7.0.3",
+		"ejs": "^3.1.10",
+		"express": "^4.21.2",
+		"express-validator": "^7.2.1"
+	},
+	"devDependencies": {
+		"nodemon": "^3.1.10"
+	}
+}
