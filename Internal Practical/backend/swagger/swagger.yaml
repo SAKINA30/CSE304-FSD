@@ -1,0 +1,194 @@
+openapi: 3.0.0
+info:
+  title: WaitMate API
+  version: 1.0.0
+  description: Queue System API
+
+servers:
+  - url: http://localhost:5000/api
+
+paths:
+  /admin/signup:
+    post:
+      summary: Admin Signup
+      tags: [Admin]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name: { type: string, example: John Doe }
+                email: { type: string, example: admin@waitmate.com }
+                password: { type: string, example: password123 }
+                shopName: { type: string, example: The Barber Shop }
+                shopCode: { type: string, example: SHOP123 }
+      responses:
+        '201':
+          description: Signup successful
+
+  /admin/login:
+    post:
+      summary: Admin Login
+      tags: [Admin]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email: { type: string, example: admin@waitmate.com }
+                password: { type: string, example: password123 }
+      responses:
+        '200':
+          description: Login successful
+
+  /admin/services:
+    post:
+      summary: Add services with estimated time
+      tags: [Admin]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                shopCode: { type: string, example: SHOP123 }
+                services:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name: { type: string, example: Haircut }
+                      estimatedTime: { type: number, example: 30 }
+      responses:
+        '200':
+          description: Services added successfully
+
+  /admin/qrcode/{shopCode}:
+    get:
+      summary: Generate QR code for shop
+      tags: [Admin]
+      parameters:
+        - name: shopCode
+          in: path
+          required: true
+          schema: { type: string }
+          example: SHOP123
+      responses:
+        '200':
+          description: Returns QR code image (base64/png)
+
+  /customer/register:
+    post:
+      summary: Customer registers via QR code
+      tags: [Customer]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name: { type: string, example: Alice }
+                phone: { type: string, example: "9876543210" }
+                email: { type: string, example: alice@mail.com }
+                shopCode: { type: string, example: SHOP123 }
+                services:
+                  type: array
+                  items: { type: string }
+                  example: ["Haircut", "Shave"]
+      responses:
+        '201':
+          description: Customer added
+
+  /customer/{shopCode}:
+    get:
+      summary: Get all customers in a shop queue
+      tags: [Customer]
+      parameters:
+        - name: shopCode
+          in: path
+          required: true
+          schema: { type: string }
+          example: SHOP123
+      responses:
+        '200':
+          description: Customers list
+
+  /customer/{id}:
+    delete:
+      summary: Remove customer from queue
+      tags: [Customer]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+          example: 64cbd93f28f11c001f1ab123
+      responses:
+        '200':
+          description: Customer removed
+
+  /customer/reset/{shopCode}:
+    delete:
+      summary: Reset queue for a shop
+      tags: [Customer]
+      parameters:
+        - name: shopCode
+          in: path
+          required: true
+          schema: { type: string }
+          example: SHOP123
+      responses:
+        '200':
+          description: Queue reset successfully
+
+  /services:
+    post:
+      summary: Add a new service
+      tags: [Services]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                shopCode: { type: string, example: SHOP123 }
+                name: { type: string, example: Beard Trim }
+                estimatedTime: { type: number, example: 15 }
+      responses:
+        '201':
+          description: Service added successfully
+
+  /services/{shopCode}:
+    get:
+      summary: Get all services of a shop
+      tags: [Services]
+      parameters:
+        - name: shopCode
+          in: path
+          required: true
+          schema: { type: string }
+          example: SHOP123
+      responses:
+        '200':
+          description: List of services
+
+  /services/{id}:
+    delete:
+      summary: Delete a service by ID
+      tags: [Services]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+          example: 64cbd93f28f11c001f1ab456
+      responses:
+        '200':
+          description: Service deleted successfully
